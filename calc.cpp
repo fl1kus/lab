@@ -14,7 +14,7 @@ int main() {
 
     switch (op) {
 
-    case 1:     // code
+    case 1:     result = a + b;
 
         break;
 

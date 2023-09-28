@@ -1,0 +1,651 @@
+<section id="region-main" aria-label="Контент">
+
+                    <span class="notifications" id="user-notifications"></span>
+                    <div role="main" id="yui_3_17_2_1_1695884705271_24"><span id="maincontent"></span><h2>Лабораторна робота 1.  Система контролю версій Git</h2><div class="box py-3 generalbox center clearfix" id="yui_3_17_2_1_1695884705271_23"><div class="no-overflow" id="yui_3_17_2_1_1695884705271_22"><p style="margin-left: 60px;"><strong></strong></p><p><b>Мета роботи</b><span lang="RU">: </span>вивчити основні засоби
+роботи з репозиторієм Git.</p>
+<p></p>
+<h3></h3><h2><a name="_Toc96410226">Теоретичні
+відомості</a></h2>
+
+<p>Коли
+над проєктом працює команда розробників, постає питання: “Як не заплутатися у
+версіях проєкту та поєднувати роботу різних розробників?” Як відповідь на це
+було придумано систему контролю версій Git. Вона дозволяє підтримувати
+актуальні версії файлів серед усіх розробників, “відкотитися” на останню робочу
+версію у разі помилки і працювати розробнику з різних комп’ютерів у своєму
+профілі.</p>
+
+<p><a name="_Hlk94124873"><b>Git</b> — це безкоштовна
+розподілена система контролю версій з відкритим вихідним кодом</a>, призначена
+для швидкої та ефективної роботи від малих до дуже великих проєктів.<a href="#_ftn1" name="_ftnref1" title=""><!--[if !supportFootnotes]-->[1]<!--[endif]--></a></p>
+
+<h4>Три стани</h4>
+
+<p>Git має три основні стани, в яких можуть перебувати
+файли:&nbsp;</p>
+
+<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]--><b>збережений у коміті (commited)</b> – означає,
+що дані безпечно збережено в локальній базі даних <span lang="RU">(</span>репозиторії<span lang="RU">);</span></p>
+
+<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]--><b>змінений (modified)</b> – означає, що у файл
+внесено редагування, які ще не збережено в базі даних;</p>
+
+<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]--><b>індексований стан (staged)</b> – виникає
+тоді, коли ви позначаєте змінений файл у
+поточній версії, щоб ці зміни ввійшли до наступної фіксації коміту.</p>
+
+<p>З цього випливають <b>три основні частини проєкту</b> під
+управлінням Git: директорія Git, робоче дерево та індекс (рис. 1.1) <a href="#_ftn2" name="_ftnref2" title=""><!--[if !supportFootnotes]-->[2]<!--[endif]--></a>.</p>
+
+<p align="center">
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+
+ 
+</p>
+
+<p align="center"><img src="http://cyber.onua.edu.ua/pluginfile.php/3161/mod_page/content/28/lb1_1.jpg" alt="ris1_1" width="401" height="221" class="img-responsive atto_image_button_text-bottom"><br></p><p align="center">Рисунок
+1.1. Робоча директорія, індекс та директорія Git</p>
+
+<p>У <b>директорії</b> Git система зберігає метадані та базу
+даних об’єктів вашого проєкту. Це найважливіша частина Git, саме вона
+копіюється при <i>клонуванні</i> сховища з іншого комп’ютера.</p>
+
+<p><b>Робоче дерево</b> — це одна окрема версія проєкту, взята
+зі сховища. Ці файли видобуваються з бази даних у папці Git і розміщуються на
+диску для подальшого використання та редагування.</p>
+
+<p><b>Індекс</b> — це файл, який зазвичай розміщено в
+директорії Git і містить інформацію про те, що буде збережено у наступному
+коміті. Також цей файл називають “областю додавання” (staging area), проте
+переважно користуються технічним терміном Git “індекс”.</p>
+
+<p>Найпростіший процес взаємодії з Git виглядає приблизно так:</p>
+
+<p><!--[if !supportLists]-->1.&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->ви
+редагуєте файли у своїй робочій директорії;</p>
+
+<p><!--[if !supportLists]-->2.&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->вибірково
+надсилаєте до індексу лише ті зміни, які бажаєте зберегти в наступному коміті,
+і&nbsp;лише&nbsp;ці зміни буде збережено в індексі;</p>
+
+<p><!--[if !supportLists]-->3.&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->створюєте
+коміт: знімок з індексу остаточно зберігається в директорії Git.</p>
+
+<p>Якщо окрема версія файлу вже є в директорії Git, цей файл
+вважається збереженим у коміті. Якщо він зазнав змін і перебуває в індексі, то
+він індексований. Якщо ж його стан відрізняється від того, який був у коміті, і
+файлу немає в індексі, то він називається зміненим.</p>
+
+<p>Послідовність створення Git-репозиторія розглянуто на
+офіційному сайті <a href="https://git-scm.com/book/uk/v2/Основи-Git-Створення-Git-репозиторія#ch02-git-basics-chapter">https://git-scm.com/book/uk/v2/Основи-Git-Створення-Git-репозиторія#ch02-git-basics-chapter</a>.</p>
+
+<p id="yui_3_17_2_1_1695884705271_21">Посібник з повним списком усіх команд <span lang="EN-US">Git</span> можна подивитись на сайті <a href="https://git-scm.com/docs">https://git-scm.com/docs</a>.</p>
+
+<h2><a name="_Toc250893181"></a><a name="_Toc31228334"></a><a name="_Toc96410227"><span lang="X-NONE">Контрольні запитання для
+самоконтролю</span></a><span lang="X-NONE"></span></h2>
+
+<p>1. Як створити Git-репозиторій? </p>
+
+<p>2. Як <span lang="RU">д</span>олучити файл
+до репозиторія <span lang="RU">для </span>контрол<span lang="RU">ю верс</span>і<span lang="RU">й</span>? </p>
+
+<p>3. У скількох станах можуть перебувати файли в репозиторії Git? </p>
+
+<p>4. Яка команда використовується для
+визначення стану файлу в репозиторії? </p>
+
+<p>5. Для чого використовується файл .gitignore? </p>
+
+<p>6. Якою командою переглянути непроіндексовані зміни, зроблені після
+останнього коміту? </p>
+
+<p>7. Якою командою виконується фіксація змін? </p>
+
+<p>8. Як видалити файл з Git-репозиторія? </p>
+
+<p>10. Як переглянути історію комітів? </p>
+
+<p>11. Як змінити останній коміт? </p>
+
+<p>12. Яка команда створить нову гілку в Git-репозиторії? </p>
+
+<p>13. Як об‘єднати гілки А та Б?</p>
+
+<h2><a name="_Toc96410228">Лабораторне
+завдання</a></h2>
+
+<h3>1<span lang="X-NONE">
+Перші кроки у роботі з Git</span></h3>
+
+<p><!--[if !supportLists]-->1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Спочатку
+треба встановити Git на ваш комп’ютер. </p>
+
+<p>Якщо
+ви користувач Windows, потрібно перейти на сайт &nbsp;<a href="https://gitforwindows.org" class="_blanktarget">https://gitforwindows.org</a> і&nbsp; завантажити відповідну версію Git.</p>
+
+<p>Для
+Linux потрібно виконати у терміналі команду:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">apt-get
+install git</p></div></div>
+
+<p>Подальші
+кроки однакові для обох ОС. </p>
+
+<p><!--[if !supportLists]-->2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Відкрити
+термінал (консоль) та пройти реєстрацію за допомогою команд:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_25"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+config --global user.name "Name"</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+config --global user.email “email@fcit.ua”</p></div></div>
+
+
+
+<p>Name
+та <a href="mailto:email@fcit.ua">email</a> тут вказувати власні.</p>
+
+<p><!--[if !supportLists]-->3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->У
+вигляді перших кроків пропонуємо створити папку з назвою “FCIT”, перейти до неї
+та створити файл “student.html”:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">mkdir FCIT</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">cd FCIT</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">touch student.html</p></div></div>
+
+
+
+
+
+<p><span lang="RU">Перей</span>ти
+до іншої папки можна командою:<span lang="RU"></span></p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left"><span lang="EN-US">cd</span><span lang="RU"> &lt;</span>шлях до іншої
+папки<span lang="RU">&gt;</span></p></div></div>
+
+<p id="yui_3_17_2_1_1695884705271_26">Щоб
+перейти у папку, вищу у ієрархії, слід виконати команду: </p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">cd ..</p></div></div>
+
+<p>Щоб перейти у папку іншого диску, слід виконати команду <span lang="EN-US">cd</span><span lang="EN-US"> </span>з параметром <span lang="RU">/</span><span lang="EN-US">d</span>, наприклад: </p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">cd /d
+d:\Student\FCIT\</p></div></div>
+
+<p>Така команда перейде до щойно створеної
+папки FCIT.</p>
+
+<p>Переглянути
+вміст поточної папки можна командою<span lang="RU">:</span></p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_36"><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_35"><p align="left" id="yui_3_17_2_1_1695884705271_34"><span lang="EN-US">ls</span></p></div></div><p align="left"><span lang="RU"></span></p>
+
+<p>Для
+<span lang="EN-US">Windows</span><span lang="EN-US"> </span><span lang="RU">ця </span>команда зветься <span lang="EN-US">dir</span>.</p><p></p><p>До речі, для
+створення папки “FCIT” та виконання інших файлових операцій можна
+використовувати звичайну програму <i>Провідник</i> Windows (Explorer). Зайшовши
+у створену папку можна натиснути ПКМ та вибрати пункт контекстного меню “Git
+Bash Here”. Після цього консоль Git відкриється саме у поточній папці <i>Провідника</i>.</p><p>4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Відкрити
+цей файл за допомогою будь-якого текстового редактора і вписати туди свої ім’я
+та прізвище. </p>
+
+<p><!--[if !supportLists]-->5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Тепер
+потрібно ініціалізувати репозиторій, тобто дати Git знати, що ви бажаєте надалі
+контролювати версії цього проєкту, і, можливо, завантажити його до будь-якого
+сервісу Git. Щоб ініціалізувати репозиторій, треба виконати команду:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+init</p></div></div>
+
+<p><!--[if !supportLists]-->6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Долучити
+файл до репозиторія:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_31"><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_33"><p align="left" id="yui_3_17_2_1_1695884705271_32">git
+add student.html</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+commit -m "First Commit”</p></div></div>
+
+
+
+<p>У
+відповідь ви побачите таке:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">$ git add student.html</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">$ git commit -m "First
+Commit"</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">[master (root-commit) 911e8c9] First
+Commit</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;1 files changed, 1 insertions(+), 0
+deletions(-)</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;create mode 100644 student.html</p></div></div>
+
+
+
+
+
+
+
+
+
+<p><!--[if !supportLists]-->7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Перевірити
+стан репозиторія за допомогою команди:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+status</p></div></div>
+
+<p>У
+відповідь побачите:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_30"><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_29"><p align="left" id="yui_3_17_2_1_1695884705271_28">$ git status</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left"># On branch master</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">nothing to commit (working
+directory clean)</p></div></div>
+
+
+
+
+
+<p id="yui_3_17_2_1_1695884705271_37">Команда
+перевірки стану повідомляє, що всі файли, які є у директорії, були долучені до
+репозиторія. </p>
+
+<p id="yui_3_17_2_1_1695884705271_27"><!--[if !supportLists]-->8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Знов
+відкрити файл “student.html”, відокремити ваше прізвище за допомогою HTML тегу
+та зберегти файл. </p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">Taras
+&lt;b&gt;Tarasov&lt;/b&gt;</p></div></div>
+
+<p><!--[if !supportLists]-->9)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Перевірити
+стан репозиторія знову. Після змінення файлу “student.html”, ви повинні
+отримати:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">$ git status</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left"># On branch master</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left"># Changes not staged for
+commit:</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">#&nbsp;&nbsp; (use "git add &lt;file&gt;..." to
+update what will be committed)</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">#&nbsp;&nbsp; (use "git checkout --
+&lt;file&gt;..." to discard changes in working directory)</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">#</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">#&nbsp;&nbsp; modified:&nbsp;&nbsp;
+student.html</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">#</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">no changes added to commit
+(use "git add" and/or "git commit -a”)</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Тобто
+Git одразу зрозумів, що файл “student.html” було змінено, але ці зміни ще не
+зафіксовані у репозиторії. Якщо ви бажаєте зберегти ці зміни, то варто знову
+додати цей файл за допомогою команди “add”, якщо ні – зробіть команду:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+сheckout</p></div></div>
+
+<p><!--[if !supportLists]-->10)&nbsp; <!--[endif]-->Після збереження змін,
+створити ще 2 файли з назвами “junior.html” та “senior.html”, наповнити їх
+довільним&nbsp; HTML-кодом. </p>
+
+<p><!--[if !supportLists]-->11)&nbsp; <!--[endif]-->Ви вже вмієте долучати файли
+та фіксувати (робити коміт), проте що робити, якщо треба завантажити декілька
+файлів з різними комітами, щоб відрізняти їх? Тоді варто зробити таке:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+add junior.html</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+add senior.html</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+commit -m “People who work”</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+add student.html</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+commit -m “People who study”</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+<p><!--[if !supportLists]-->12)&nbsp; <!--[endif]-->Якщо потрібно додати до коміту
+всю директорію — цей спосіб є найбільш зручним та поширеним:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+add .</p><p align="left"><br></p><p align="left"><br></p></div></div>
+
+<h3 id="yui_3_17_2_1_1695884705271_56">2<span lang="X-NONE">
+Робота з гілками</span></h3>
+
+<p>При
+роботі над великим проєктом його розбивають на модулі та дають доступ декільком
+розробникам. Кожен з них робить свою частину, проте їм потрібно буде зібрати ці
+частини докупи. У такому разі стане у нагоді використання гілок. </p>
+
+<p><!--[if !supportLists]-->1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Спочатку
+треба створити файл, з якого починатиметься робота. Як приклад пропонуємо
+створити проєкт «Калькулятор»:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">touch
+calc.cpp</p></div></div>
+
+<p><!--[if !supportLists]-->2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->У
+ньому потрібно написати основу майбутнього калькулятора:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_40"><div class="editor-indent" style="margin-left: 30px;"><p align="left">#include &lt;iostream&gt;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">using
+namespace std;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">int
+main() {</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; int a, b, op; &nbsp;&nbsp;double result;</p></div><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_39"><p align="left" id="yui_3_17_2_1_1695884705271_38">&nbsp; cout &lt;&lt; "Введіть перше
+число\n"; &nbsp;&nbsp;cin &gt;&gt; a;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Введіть
+оператор\n1\t+\n2\t-\n3\t*\n4\t/\n\n";&nbsp;
+cin &gt;&gt; op;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Введіть друге
+число\n";&nbsp;&nbsp; &nbsp;&nbsp;cin &gt;&gt; b;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; switch(op) {</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 1:&nbsp;&nbsp;&nbsp;
+&nbsp;// code</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 2: &nbsp;&nbsp;&nbsp;// code</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 3: &nbsp;&nbsp;&nbsp;&nbsp;// code</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 4: &nbsp;&nbsp;&nbsp;&nbsp;// code</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; }</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Результат = "
+&lt;&lt; result;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">}</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><!--[if !supportLists]-->3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Далі
+потрібно створити гілку для операції додавання:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_50"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+checkout -b addition</p></div><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_49"><p align="left" id="yui_3_17_2_1_1695884705271_48">git
+status</p></div></div>
+
+
+
+<p><!--[if !supportLists]-->4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Наступним
+кроком розробляється модуль для операції додавання. Після розробки код “case 1”
+виглядатиме так:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_41"><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_47"><p align="left" id="yui_3_17_2_1_1695884705271_46">switch(op)
+{</p></div><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_43"><p align="left" id="yui_3_17_2_1_1695884705271_42">&nbsp;&nbsp; case 1:&nbsp;&nbsp;&nbsp;
+result = a + b;&nbsp; break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp; ...</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">}</p></div><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_45"><p id="yui_3_17_2_1_1695884705271_44"><code>&nbsp;</code></p></div></div><span style="font-size: 0.9375rem;">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-size: 0.9375rem;">Потрібно
+зафіксувати («закомітити») результати:</span><br><div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+add calc.cpp</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+commit -m “addition”</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+status</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><!--[if !supportLists]-->6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Для
+створення інших гілок потрібно перейти до головної гілки та зробити нові гілки:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_51"><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+checkout master</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+status</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+checkout -b subtraction</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">git
+status</p></div></div>
+
+
+
+
+
+
+
+<p id="yui_3_17_2_1_1695884705271_52"><!--[if !supportLists]-->7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Далі
+повторити дії для решти операцій. </p>
+
+<p><!--[if !supportLists]-->8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Після
+того, як буде зроблено кожен з модулів калькулятора, потрібно з’єднати їх з
+головною гілкою master:</p>
+
+<div class="editor-indent" style="margin-left: 30px;"><div class="editor-indent" style="margin-left: 30px;"><p align="left"><span style="font-size: 0.9375rem;">git merge master</span><br></p><p align="left">git
+checkout addition</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left"><span style="font-size: 0.9375rem;">git
+status</span><br></p></div></div>
+
+
+
+
+
+<p><!--[if !supportLists]-->9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--[endif]-->Після
+з’єднання кожної з гілок до головної, ви повинні отримати такий результат:</p>
+
+<div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_53"><div class="editor-indent" style="margin-left: 30px;"><p align="left">#include
+&lt;iostream&gt;</p></div><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_58"><p align="left" id="yui_3_17_2_1_1695884705271_57">using
+namespace std;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">int
+main() {</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; int a, b, op;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; double result;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Введіть перше
+число\n";</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cin &gt;&gt; a;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Введіть
+оператор\n1\t+\n2\t-\n3\t*\n4\t/\n\n";</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cin &gt;&gt; op;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Введіть друге число\n";</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cin &gt;&gt; b;</p></div><div class="editor-indent" style="margin-left: 30px;" id="yui_3_17_2_1_1695884705271_55"><p align="left" id="yui_3_17_2_1_1695884705271_54">&nbsp; switch(op) {</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 1:</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result = a + b;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 2:</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;result = a - b;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 3:</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = a * b;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp; case 4:</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = (double) a / b;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; }</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">&nbsp; cout &lt;&lt; "Результат = "
+&lt;&lt; result;</p></div><div class="editor-indent" style="margin-left: 30px;"><p align="left">}</p></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10.&nbsp; Виконати аналіз отриманих результатів. Оформити
+протокол лабораторної роботи та відповісти на контрольні питання. 
+
+<div><!--[if !supportFootnotes]--><br clear="all">
+
+<hr align="left" size="1" width="33%">
+
+<!--[endif]-->
+
+<div id="ftn1">
+
+<p><a href="#_ftnref1" name="_ftn1" title=""><span lang="RU"><!--[if !supportFootnotes]--><span lang="RU">[1]</span><!--[endif]--></span></a><span lang="RU"> </span><span lang="EN-US">Git. URL: <a href="https://git-scm.com/" class="_blanktarget">https://git-scm.com/</a></span></p>
+
+</div>
+
+<div id="ftn2">
+
+<p><a href="#_ftnref2" name="_ftn2" title=""><span lang="RU"><!--[if !supportFootnotes]--><span lang="RU">[2]</span><!--[endif]--></span></a><span lang="RU"> </span><span lang="RU">Вступ - Про систему
+контролю версій. </span><span lang="EN-US">URL: </span><a href="https://git-scm.com/book/uk/Вступ-Три-стани" class="_blanktarget">https://git-scm.com/book/uk/Вступ-Три-стани</a></p>
+
+</div>
+
+</div><br><div><div id="ftn1">
+</div>
+</div>
+<h3><b>&nbsp;</b></h3></div></div><div class="modified">Остання зміна: Tuesday 29 March 2022 21:58 PM</div></div>
+                    <div class="mt-5 mb-1 activity-navigation container-fluid">
+<div class="row">
+    <div class="col-md-4">        <div class="float-left">
+                <a href="http://cyber.onua.edu.ua/mod/page/view.php?id=464&amp;forceview=1" id="prev-activity-link" class="btn btn-link" title="Самостійна робота 3. ПРОЦЕС СТВОРЕННЯ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ ">◄ Самостійна робота 3. ПРОЦЕС СТВОРЕННЯ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ </a>
+
+        </div>
+</div>
+    <div class="col-md-4">        <div class="mdl-align">
+            <div class="urlselect">
+    <form method="post" action="http://cyber.onua.edu.ua/course/jumpto.php" class="form-inline" id="url_select_f6515259c10bcd15">
+        <input type="hidden" name="sesskey" value="yGt5Wu9AOy">
+            <label for="jump-to-activity" class="sr-only">
+                Перейти до...
+            </label>
+        <select id="jump-to-activity" class="custom-select urlselect" name="jump">
+                    <option value="" selected="">Перейти до...</option>
+                    <option value="/mod/url/view.php?id=3233&amp;forceview=1">Журнал успішності ІПЗ</option>
+                    <option value="/mod/resource/view.php?id=457&amp;forceview=1">Силабус до дисципліни </option>
+                    <option value="/mod/resource/view.php?id=4947&amp;forceview=1">Навч.-метод. посібник "Основи програмної інженерії"</option>
+                    <option value="/mod/page/view.php?id=458&amp;forceview=1">Перелік рекомендованої літератури та інформаційних джерел</option>
+                    <option value="/mod/page/view.php?id=460&amp;forceview=1">Лекція 1. Інженерія програмного забезпечення</option>
+                    <option value="/mod/resource/view.php?id=461&amp;forceview=1">Лекція 1 (презентація)</option>
+                    <option value="/mod/page/view.php?id=462&amp;forceview=1">Самостійна робота 1. Характеристика областей знань з інженерії програмного забезпечення у SWEBOK</option>
+                    <option value="/mod/page/view.php?id=463&amp;forceview=1">Самостійна робота 2. ПРОГРАМНЕ ЗАБЕЗПЕЧЕННЯ</option>
+                    <option value="/mod/page/view.php?id=464&amp;forceview=1">Самостійна робота 3. ПРОЦЕС СТВОРЕННЯ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ </option>
+                    <option value="/mod/page/view.php?id=1395&amp;forceview=1">Самостійна робота 4. Контроль версій ПЗ засобами сервісу Replit</option>
+                    <option value="/mod/page/view.php?id=1396&amp;forceview=1">Лабораторна робота 2 Створення віддаленого репозиторія GIT</option>
+                    <option value="/mod/page/view.php?id=1397&amp;forceview=1">Лабораторна робота 3. Робота з віддаленим репозиторієм GIT</option>
+                    <option value="/mod/page/view.php?id=1398&amp;forceview=1">Самостійна робота 5. Проєктування програмного забезпечення</option>
+                    <option value="/mod/quiz/view.php?id=465&amp;forceview=1">Тест до теми 1</option>
+                    <option value="/mod/resource/view.php?id=1376&amp;forceview=1">Лекція 2. ЖИТТЄВИЙ ЦИКЛ ПЗ</option>
+                    <option value="/mod/page/view.php?id=468&amp;forceview=1">Лекція 3. МОДЕЛІ ЖИТТЄВОГО ЦИКЛУ</option>
+                    <option value="/mod/resource/view.php?id=1511&amp;forceview=1">Лекція 3 (презентація)</option>
+                    <option value="/mod/page/view.php?id=478&amp;forceview=1">Лекція 4. МЕТОДИ ОБ'ЄКТНОГО АНАЛІЗУ І МОДЕЛЮВАННЯ </option>
+                    <option value="/mod/page/view.php?id=471&amp;forceview=1">Самостійна робота 9. ПРОТОТИПУВАННЯ</option>
+                    <option value="/mod/resource/view.php?id=472&amp;forceview=1">Керівництво користувача StarUML</option>
+                    <option value="/mod/page/view.php?id=473&amp;forceview=1">Лабораторна робота 4 ДІАГРАМИ UML. ОЗНАЙОМЛЕННЯ З ІНТЕРФЕЙСОМ StarUML </option>
+                    <option value="/mod/page/view.php?id=475&amp;forceview=1">Лабораторна робота 5 СТВОРЕННЯ ДІАГРАМИ ВАРІАНТІВ ВИКОРИСТАННЯ (USE CASES DIAGRAMS)</option>
+                    <option value="/mod/page/view.php?id=481&amp;forceview=1">Лабораторна робота № 6.  СТВОРЕННЯ ДІАГРАМИ ПОСЛІДОВНОСТЕЙ  (SEQUENCE DIAGRAMS)</option>
+                    <option value="/mod/page/view.php?id=483&amp;forceview=1">Лабораторна робота № 7. СТВОРЕННЯ ДІАГРАМ ДІЯЛЬНОСТІ (ACTIVITY DIAGRAMS)</option>
+                    <option value="/mod/page/view.php?id=485&amp;forceview=1">Лабораторна робота № 8. СТВОРЕННЯ ДІАГРАМИ КЛАСІВ (CLASS DIAGRAMS)</option>
+                    <option value="/mod/assign/view.php?id=486&amp;forceview=1">Збереження файлів на лб8</option>
+                    <option value="/mod/quiz/view.php?id=477&amp;forceview=1">Тест до теми 2</option>
+                    <option value="/mod/page/view.php?id=470&amp;forceview=1">Лекція 5. ВИЗНАЧЕННЯ ВИМОГ ДО ПРОГРАМНИХ СИСТЕМ</option>
+                    <option value="/mod/resource/view.php?id=1512&amp;forceview=1">Лекція 5 (презентація) </option>
+                    <option value="/mod/page/view.php?id=479&amp;forceview=1">Лекція 6. МОДЕЛІ ЯКОСТІ ТА НАДІЙНОСТІ ПРОГРАМНИХ СИСТЕМ </option>
+                    <option value="/mod/page/view.php?id=1497&amp;forceview=1">Самостійна робота 8. Планування програмного проєкту  із застосуванням Projectlibre</option>
+                    <option value="/mod/page/view.php?id=488&amp;forceview=1">Лабораторна робота № 9 КАЛЕНДАРНЕ ПЛАНУВАННЯ РОБІТ ПРОЕКТУ</option>
+                    <option value="/mod/page/view.php?id=1498&amp;forceview=1">Лабораторна робота № 10. Планування ресурсів проєкту</option>
+                    <option value="/mod/page/view.php?id=1503&amp;forceview=1">Лабораторна робота № 11. Декомпозиція програм </option>
+                    <option value="/mod/page/view.php?id=1506&amp;forceview=1">Самостійна робота 9. Класифікація видів та напрямків  тестування </option>
+                    <option value="/mod/page/view.php?id=1519&amp;forceview=1">Лабораторна робота № 12. Розробка специфікації вимог до програмного продукта</option>
+                    <option value="/mod/resource/view.php?id=1520&amp;forceview=1">Шаблон Software Requirements Specification (англійською мовою)</option>
+                    <option value="/mod/resource/view.php?id=1521&amp;forceview=1">Опис структури Software Requirements Specification (англійською мовою)</option>
+                    <option value="/mod/page/view.php?id=1507&amp;forceview=1">Самостійна робота № 10. Тестування вимог </option>
+                    <option value="/mod/page/view.php?id=1509&amp;forceview=1">Самостійна робота № 11. Добір видів тестування</option>
+                    <option value="/mod/quiz/view.php?id=490&amp;forceview=1">Тест до теми 3</option>
+                    <option value="/mod/page/view.php?id=480&amp;forceview=1">Лекція 2.1. DevOps</option>
+                    <option value="/mod/page/view.php?id=1496&amp;forceview=1">Лекція 2.2. DevSecOps</option>
+                    <option value="/mod/page/view.php?id=2142&amp;forceview=1">Лабораторна робота 2.1. Аналіз сучасних технологій SDLC</option>
+                    <option value="/mod/page/view.php?id=2145&amp;forceview=1">Лабораторна робота 2.2. Порівняння сучасних технологій SDLC</option>
+                    <option value="/mod/page/view.php?id=2759&amp;forceview=1">Лабораторна робота 2.3. Аналіз методологій DevOps та DevSecOps</option>
+                    <option value="/mod/page/view.php?id=2760&amp;forceview=1">Лабораторна робота 2.4. Порівняння методологій DevOps та DevSecOps</option>
+                    <option value="/mod/quiz/view.php?id=1140&amp;forceview=1">Підсумковий тест</option>
+        </select>
+            <noscript>
+                <input type="submit" class="btn btn-secondary ml-1" value="Застосувати">
+            </noscript>
+    </form>
+</div>
+
+        </div>
+</div>
+    <div class="col-md-4">        <div class="float-right">
+                <a href="http://cyber.onua.edu.ua/mod/page/view.php?id=1395&amp;forceview=1" id="next-activity-link" class="btn btn-link" title="Самостійна робота 4. Контроль версій ПЗ засобами сервісу Replit">Самостійна робота 4. Контроль версій ПЗ засобами сервісу Replit ►</a>
+
+        </div>
+</div>
+</div>
+</div>
+                    
+
+                </section>
